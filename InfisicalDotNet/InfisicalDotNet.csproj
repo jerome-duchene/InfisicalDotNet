@@ -8,15 +8,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="..\readme.md" Pack="true" PackagePath="\"/>
+        <None Include="..\readme.md" Pack="true" PackagePath="\" />
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="BouncyCastle.Cryptography" Version="2.2.1" />
-        <PackageReference Include="coverlet.collector" Version="6.0.0">
+        <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0" />
+        <PackageReference Include="coverlet.collector" Version="6.0.2">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Infisical.Sdk" Version="2.3.7" />
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     </ItemGroup>
 </Project>

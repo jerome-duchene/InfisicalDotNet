@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace InfisicalDotNet;
+namespace InfisicalDotNet.InfisicalToken;
 
 public class InfisicalConfigurationSource : IConfigurationSource
 {

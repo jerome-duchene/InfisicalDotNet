@@ -8,7 +8,7 @@ using Org.BouncyCastle.Crypto.Modes;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
 
-namespace InfisicalDotNet;
+namespace InfisicalDotNet.InfisicalToken;
 
 public class InfisicalConfigurationProvider : ConfigurationProvider
 {
@@ -65,7 +65,7 @@ public class InfisicalConfigurationProvider : ConfigurationProvider
 
             var tokenMatch = _tokenRegex.Match(_infisicalServiceToken);
             var serviceTokenKey = tokenMatch.Groups[2].Value;
-            
+
             var url = $"{_apiUrl}/api/v3/secrets/?environment={environment}&workspaceId={workspace}&secretPath={secretPath}&include_imports={_includeImports.ToString().ToLower()}";
             var response = await _httpClient.GetAsync(url);
             var content = await response.Content.ReadAsStringAsync();
@@ -74,7 +74,7 @@ public class InfisicalConfigurationProvider : ConfigurationProvider
 
             var workspaceKey = DecryptSymmetric128BitHexKeyUtf8(serviceTokenKey, serviceTokenObj.EncryptedKey,
                 serviceTokenObj.Tag, serviceTokenObj.Iv);
-            
+
             var allSecrets = secrets.Secrets.Select(
                 secret => new KeyValuePair<string, string>(
                     DecryptSymmetric128BitHexKeyUtf8(
@@ -112,7 +112,7 @@ public class InfisicalConfigurationProvider : ConfigurationProvider
             throw;
         }
     }
-    
+
     public string DecryptSymmetric128BitHexKeyUtf8(string key, string ciphertext, string tag, string iv)
     {
         try
