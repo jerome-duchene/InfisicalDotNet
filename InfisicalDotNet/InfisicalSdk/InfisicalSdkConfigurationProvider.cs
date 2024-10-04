@@ -4,7 +4,7 @@ using InfisicalDotNet.Extensions;
 
 namespace InfisicalDotNet.InfisicalSdk;
 
-internal class InfisicalSdkConfigurationProvider(ClientSettings clientSettings, string projectId, string environment, string path, bool prefixWithPath, bool includeImports = true, string prefix = "") : ConfigurationProvider
+internal class InfisicalSdkConfigurationProvider(ClientSettings clientSettings, string projectId, string environment, string path, bool includeImports = true, string prefix = "") : ConfigurationProvider
 {
     private readonly ClientSettings _clientSettings = clientSettings;
     private readonly string _projectId = projectId;
@@ -12,7 +12,6 @@ internal class InfisicalSdkConfigurationProvider(ClientSettings clientSettings, 
     private readonly string _path = path;
     private readonly bool _includeImports = includeImports;
     private readonly string _prefix = prefix;
-    private readonly bool _prefixWithPath = prefixWithPath;
 
     private readonly Dictionary<string, string> _secretsCache = new();
 
@@ -35,7 +34,6 @@ internal class InfisicalSdkConfigurationProvider(ClientSettings clientSettings, 
             {
                 if (string.IsNullOrEmpty(secret.SecretKey))
                     continue;
-                string key = secret.GetKey(_prefixWithPath);
                 _secretsCache[key] = secret.SecretValue;
             }
 

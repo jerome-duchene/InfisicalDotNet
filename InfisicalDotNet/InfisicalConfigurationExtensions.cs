@@ -23,10 +23,9 @@ public static class InfisicalConfigurationExtensions
         string projectId, 
         string environment, 
         string path, 
-        bool prefixWithPath, 
         bool includeImports = true, 
         string prefix = "")
     {
-        return builder.Add(new InfisicalSdkConfigurationSource(infisicalClientSettings, projectId, environment, path, prefixWithPath, includeImports, prefix));
+        return builder.Add(new InfisicalSdkConfigurationSource(infisicalClientSettings, projectId, environment, path, includeImports, prefix));
     }
 }
